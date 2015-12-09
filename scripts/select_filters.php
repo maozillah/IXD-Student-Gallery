@@ -6,7 +6,7 @@ require('db.inc.php');
 
 // $userEmail = $_SESSION["userName"];
 
-function GetYear()
+function getClasses()
 {
     global $userEmail;
     

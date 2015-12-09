@@ -14,6 +14,11 @@
         <option value="3">Third year</option>
         <option value="4">Fourth year</option>
     </select>
+
+    <select name="projectType" onchange="showClass(this.value)">
+        <option value="all">class</option>
+
+    </select>
 </form>
 
 <div id="txtHint">
