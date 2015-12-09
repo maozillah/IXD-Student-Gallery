@@ -1,22 +1,27 @@
-<?php 
+<?php
 ini_set('display_errors', '1');
-error_reporting(E_ALL); 
+error_reporting(E_ALL);
 
-require('db.inc.php');
+require ('db.inc.php');
 
 // $userEmail = $_SESSION["userName"];
 
-function getClasses()
-{
-    global $userEmail;
+function getClasses() {
     
-    $mysqli = ConnectToDB(); //this function is in db.inc.php
-       
-    $sql = "SELECT project.project_name, project.img_url, class.class_year, class.class_name
-    FROM project
-        JOIN class
-            ON project.class_id = class.class_id
-        WHERE class_year = '3'" ;
-} 
-
+    $db = ConnectToDB();
+     //this function is in db.inc.php
+    
+    $sql = "SELECT class_name FROM class ORDER BY class_year";
+    
+    $result = $db->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<option value='$scopeTitle'>".$row['class_name']."</option>";
+        }
+    }
+    
+    $result->close();
+    mysqli_close($db);
+}
 ?>
