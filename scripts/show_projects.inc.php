@@ -4,37 +4,35 @@ error_reporting(E_ALL);
 
 require('db.inc.php');
 
+if (isset($_GET['q'])) {
+    $q = $_GET['q'];
+} 
+else {
+    $q = 'all';
+}
+
+echo $q;
+
 // remove function to run
-function insertProjects() {
+if ($q == 'all') {
     
     $db = ConnectToDB();
     
-    $sql = "
-SELECT type_id FROM type WHERE type_title ='$type'
-UNION
-SELECT scope_id FROM scope WHERE scope_title='$scope';
-";
+    $sql = "SELECT img_url FROM project";;
     
     $result = $db->query($sql);
+
+    $directory = 'uploads/';
     
     if ($result->num_rows > 0) {
         
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-            $scope_type[] = $row['type_id'];
-        }
-    }
-    
-    if ($result2->num_rows > 0) {
-        
-        // output data of each row
-        while ($row = $result2->fetch_assoc()) {
-            $id = $row['project_id'];
+        echo '<img src="' .$directory . $row['img_url']. '" alt="">';
         }
     }
 
     $result->close();
-    
     mysqli_close($db);
 }
 
