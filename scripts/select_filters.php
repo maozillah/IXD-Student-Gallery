@@ -17,7 +17,7 @@ function getClasses() {
     
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<option value='$scopeTitle'>".$row['class_name']."</option>";
+            echo "<option value='".$row['class_name']."'>".$row['class_name']."</option>";
         }
     }
     
