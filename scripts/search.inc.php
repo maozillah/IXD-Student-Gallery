@@ -4,11 +4,11 @@ error_reporting(E_ALL);
 
 require ('db.inc.php');
 
-if (isset($_GET['q'])) {
-    $q = $_GET['q'];
+if (isset($_POST['search'])) {
+    $q = $_POST['search'];
 }
 
-echo $q;
+echo 'displaying'. $q;
 
 // $directory = 'uploads/';
 // $db = ConnectToDB();
