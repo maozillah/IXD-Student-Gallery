@@ -30,7 +30,6 @@
 </form>
 
 <div class="word">Search Query: </div>
-
 <div id="txtHint">
 </div>
 
