@@ -17,7 +17,8 @@ $sql = "SELECT project.img_url, project.project_name, project.project_descriptio
     FROM project
         JOIN class
             ON project.class_id = class.class_id
-		WHERE class_name = '$q'";
+		WHERE class_name = '$q'
+		ORDER BY completion_date;";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {

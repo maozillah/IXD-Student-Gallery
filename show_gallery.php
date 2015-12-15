@@ -7,7 +7,10 @@
  </head>
  <body>
 
- <form>
+<form>
+     <input type="text" name="search" placeholder="search for projects or authors"/>
+     <input type="submit" id="btnSubmit" name="submit" onClick="searchResults(this.value)"/>
+
     <select name="year" onchange="showYear(this.value)">
         <option value="all">all years</option>
         <option value="1">First year</option>
@@ -50,7 +53,6 @@ function showYear(str) {
     }
 }
 
-
 function showClass(str) {
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
@@ -69,6 +71,28 @@ function showClass(str) {
             }
         };
         xmlhttp.open("GET", "scripts/class.php?q=" + str, true);
+        xmlhttp.send();
+    }
+}
+
+function searchResults(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "scripts/search.php?q=" + str, true);
         xmlhttp.send();
     }
 }

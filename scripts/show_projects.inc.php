@@ -19,7 +19,8 @@ if ($q == 'all') {
     $sql = "SELECT project.img_url, project.project_name, project.project_description
     FROM project
         JOIN class
-            ON project.class_id = class.class_id";;
+            ON project.class_id = class.class_id
+        ORDER BY completion_date;";;
     $result = $db->query($sql);
 } 
 else {
@@ -27,7 +28,8 @@ else {
     FROM project
         JOIN class
             ON project.class_id = class.class_id
-WHERE class_year = '$q'";
+WHERE class_year = '$q'
+ORDER BY completion_date;";
     $result = $db->query($sql);
 }
 
