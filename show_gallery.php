@@ -9,12 +9,10 @@
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
  <body>
 
-<form method="post" action="scripts/search.inc.php">
-    <input type="text" name="search" id="search_box" class='search_box'/>
-    <input type="submit" value="Search" class="search_button" /><br />
-</form>
-
 <form>
+<input type="text" name="search" id="search_box" class='search_box'/>
+    <input type="submit" value="Search" class="search_button" />
+
     <select name="year" onchange="showYear(this.value)">
         <option value="all">all years</option>
         <option value="1">First year</option>
@@ -29,7 +27,7 @@
     </select>
 </form>
 
-<div class="word">Search Query: </div>
+<div class="searchquery">Search Query:<div class="query"></div></div>
 <div id="txtHint">
 </div>
 
@@ -37,6 +35,8 @@
 window.onload = showYear('all');
 
 function showYear(str) {
+    $(".searchquery").hide();
+
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
@@ -59,6 +59,8 @@ function showYear(str) {
 }
 
 function showClass(str) {
+    $(".searchquery").hide();
+
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
@@ -82,7 +84,7 @@ function showClass(str) {
 
 $(function() {
 
-     $(".word").hide();
+    $(".searchquery").hide();
  
     $(".search_button").click(function() {
         // getting the value that user typed
@@ -98,8 +100,8 @@ $(function() {
                 url: "scripts/search.inc.php",
                 data: data,
                 beforeSend: function(html) { // this happens before actual call
-                    $(".word").show();
-                    $(".word").append(searchString);
+                    $(".searchquery").show();
+                    $(".query").html(searchString);
                },
                success: function(html){ // this happens after we get results
                     $("#txtHint").show();
