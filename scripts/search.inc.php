@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
 
     // implement search through team members
 } else {
-    echo '<li>No results found</li>';
+    echo '<div class="col-md-12"><h2>No results found</h2></a>';
 }
 
 $result->close();

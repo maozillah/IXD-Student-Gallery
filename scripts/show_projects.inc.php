@@ -41,6 +41,8 @@ if ($result->num_rows > 0) {
         echo '<img src="' . $directory . $row['img_url'] . '" alt="" class="fullwidth">';
         echo '</div>';
     }
+} else {
+    echo '<div class="col-md-12"><h2>No results found</h2></a>';
 }
 
 $result->close();

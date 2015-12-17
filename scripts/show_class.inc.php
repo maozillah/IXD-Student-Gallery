@@ -13,7 +13,7 @@ $db = ConnectToDB();
 
 
 if ($q == 'all') {
-    $sql = "SELECT project.img_url, project.project_name, project.project_description
+    $sql = "SELECT project.project_id, project.img_url, project.project_name, project.project_description
     FROM project
         JOIN class
             ON project.class_id = class.class_id
@@ -21,7 +21,7 @@ if ($q == 'all') {
     $result = $db->query($sql);
 } 
 else {
-    $sql = "SELECT project.img_url, project.project_name, project.project_description
+    $sql = "SELECT project.project_id, project.img_url, project.project_name, project.project_description
     FROM project
         JOIN class
             ON project.class_id = class.class_id
@@ -33,11 +33,13 @@ $result = $db->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo '<div class="col-md-4">';
-        echo '<h2>'.$row['project_name'].'</h2>';
+        echo '<h2><a href="project.php?project='.$row['project_id'].'">'.$row['project_name'].'</a></h2>';
          echo '<p>'.$row['project_description'].'</p>';
-        echo '<img src="' . $directory . $row['img_url'] . '" alt="">';
+        echo '<img src="' . $directory . $row['img_url'] . '" alt="" class="fullwidth">';
         echo '</div>';
     }
+} else {
+    echo '<div class="col-md-12"><h2>No results found</h2></a>';
 }
 
 $result->close();

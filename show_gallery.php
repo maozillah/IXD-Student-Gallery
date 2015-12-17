@@ -1,18 +1,5 @@
 <?php require ('scripts/select_filters.php'); ?>
-<!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <title>Document</title>
-
-         <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/jumbotron.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
- </head>
-
- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
- <body>
+<?php require ('header.php'); ?>
 
  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -68,16 +55,8 @@
             </div>
         </div>
 
-      <hr>
-
-      <footer>
-        <p>&copy; 2015 Company, Inc.</p>
-      </footer>
-    </div>
-
 <script>
 window.onload = showYear('all');
-
 function showYear(str) {
 
     if (str == "") {
@@ -153,5 +132,4 @@ $(function() {
 });
 </script>
      
- </body>
- </html> 
+<?php require ('footer.php'); ?>
