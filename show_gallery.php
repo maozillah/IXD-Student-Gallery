@@ -4,38 +4,81 @@
  <head>
      <meta charset="UTF-8">
      <title>Document</title>
+
+         <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/jumbotron.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
  </head>
 
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
  <body>
 
-<form>
-<input type="text" name="search" id="search_box" class='search_box'/>
-    <input type="submit" value="Search" class="search_button" />
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <div class="navbar-form navbar-right">
+                <a class="btn btn-primary" href="#" role="button">Sign up &raquo;</a>
+        
+                <a class="btn btn-primary" href="#" role="button">Upload &raquo;</a>
+            </form>
+        </div>
+    </nav>
 
-    <select name="year" onchange="showYear(this.value)">
-        <option value="all">all years</option>
-        <option value="1">First year</option>
-        <option value="2">Second year</option>
-        <option value="3">Third year</option>
-        <option value="4">Fourth year</option>
-    </select>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to the Interaction Design Gallery</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
 
-    <select name="class" onchange="showClass(this.value)">
-        <option value="all">class</option>
-        <?php echo getClasses(); ?>
-    </select>
-</form>
+    <div class="container">
+        <form class="form-inline" role="form">
 
-<div class="searchquery">Search Query:<div class="query"></div></div>
-<div id="txtHint">
-</div>
+             <div class="form-group">
+            <input type="text" name="search" id="search_box" class='search_box form-control'/>
+            <button type="submit" class="btn btn-default search_button">Search</button>
+            </div>
+
+
+            <select name="year" class="form-control" onchange="showYear(this.value)">
+                <option value="all">all years</option>
+                <option value="1">First year</option>
+                <option value="2">Second year</option>
+                <option value="3">Third year</option>
+                <option value="4">Fourth year</option>
+            </select>
+            <select name="class" class="form-control" onchange="showClass(this.value)">
+                <option value="all">All classes</option>
+                <?php echo getClasses(); ?>
+            </select>
+        </form>
+        <div class="row">
+            <div id="txtHint">
+            </div>
+        </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2015 Company, Inc.</p>
+      </footer>
+    </div>
 
 <script>
 window.onload = showYear('all');
 
 function showYear(str) {
-    $(".searchquery").hide();
 
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
@@ -59,8 +102,6 @@ function showYear(str) {
 }
 
 function showClass(str) {
-    $(".searchquery").hide();
-
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
@@ -84,8 +125,6 @@ function showClass(str) {
 
 $(function() {
 
-    $(".searchquery").hide();
- 
     $(".search_button").click(function() {
         // getting the value that user typed
         var searchString    = $("#search_box").val();
@@ -100,7 +139,7 @@ $(function() {
                 url: "scripts/search.inc.php",
                 data: data,
                 beforeSend: function(html) { // this happens before actual call
-                    $(".searchquery").show();
+            
                     $(".query").html(searchString);
                },
                success: function(html){ // this happens after we get results

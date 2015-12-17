@@ -16,15 +16,15 @@ $db = ConnectToDB();
 
 // remove function to run
 if ($q == 'all') {
-    $sql = "SELECT project.img_url, project.project_name, project.project_description
+    $sql = "SELECT project.img_url, project.project_name, project.project_description, project.project_id
     FROM project
         JOIN class
             ON project.class_id = class.class_id
-        ORDER BY completion_date;";;
+        ORDER BY completion_date;";
     $result = $db->query($sql);
 } 
 else {
-    $sql = "SELECT project.img_url, project.project_name, project.project_description
+    $sql = "SELECT project.img_url, project.project_name, project.project_description, project.project_id
     FROM project
         JOIN class
             ON project.class_id = class.class_id
@@ -35,9 +35,11 @@ ORDER BY completion_date;";
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo $row['project_name'];
-         echo $row['project_description'];
-        echo '<img src="' . $directory . $row['img_url'] . '" alt="">';
+        echo '<div class="col-md-4">';
+        echo '<h2><a href="project.php?project='.$row['project_id'].'">'.$row['project_name'].'</a></h2>';
+         echo '<p>'.$row['project_description'].'</p>';
+        echo '<img src="' . $directory . $row['img_url'] . '" alt="" class="fullwidth">';
+        echo '</div>';
     }
 }
 
