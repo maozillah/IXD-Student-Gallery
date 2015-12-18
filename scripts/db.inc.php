@@ -3,7 +3,8 @@ function ConnectToDB()
 {
 
     //server, username, password, database name
-    $mysqli = new mysqli('localhost', 'user', '1234', 'ixd_gallery');  
+    // $mysqli = new mysqli('localhost', 'ixd2430_wageh', 'generic1', 'ixd2430_gallery');  
+     $mysqli = new mysqli('localhost', 'user', '1234', 'ixd_gallery');  
     // $mysqli = new mysqli('localhost', 'ixd2434_estimate', 'design1234', 'ixd2434_estimate');     
     if ($mysqli->connect_error != '') 
     {
