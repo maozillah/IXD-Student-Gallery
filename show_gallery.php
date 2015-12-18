@@ -14,16 +14,15 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <div class="navbar-form navbar-right">
-                <a class="btn btn-primary" href="#" role="button">Sign up &raquo;</a>
+                <a class="btn btn-primary" href="signup.php" role="button">Sign up &raquo;</a>
         
-                <a class="btn btn-primary" href="#" role="button">Upload &raquo;</a>
-            </form>
+                <a class="btn btn-primary" href="project_upload.php" role="button">Upload &raquo;</a>
         </div>
     </nav>
 
     <div class="jumbotron">
       <div class="container">
-        <h1>Interaction Design Gallery</h1>
+        <h1>Sheridan Interaction Design Gallery</h1>
     
       </div>
     </div>

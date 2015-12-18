@@ -83,7 +83,11 @@
                 
                 $db->commit();
                 
-                echo "Project uploaded successfully!";
+                echo "<script>
+                alert('File uploaded successfully');
+                window.location.href='show_gallery.php';
+                </script>";
+
             }
             catch(Exception $e) {
                 $db->rollback();

@@ -1,7 +1,7 @@
 <?php
     require("scripts/db.inc.php");
 
-    $error;
+    $error = "";
 
     if(isset($_POST["email"]) && isset($_POST["pass"]) && isset($_POST["firstName"]) && isset($_POST["lastName"]) && isset($_POST["blog"])){
         $db = ConnectToDB();
@@ -30,7 +30,7 @@
             mysqli_close($db);
             
             if(!isset($error)){
-                header("Location: fileupload.php");
+                header("Location: show_gallery.php");
             }
         }
         catch(Exception $e) {
@@ -40,54 +40,76 @@
     } else if(isset($_POST["email"]) || isset($_POST["pass"]) || isset($_POST["firstName"]) || isset($_POST["lastName"]) || isset($_POST["blog"])){
         $error = "Something's missing yo";
     }
-
+    
+    require ('header.php');
 ?>
 
-<html>
-    <style>
-        label, input, textarea {
-            display: block;
-        }
-
-        label {
-            margin-bottom: 30px;
-        }
-    </style>
-<body>
-    
-    <form action="signup.php" method="post">
-        <label>Email: 
-            <input id="email" type="text" name="email">
-            <p id="emailError"></p>
-        </label>
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="show_gallery.php">IxD Gallery</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <div class="navbar-form navbar-right">
+                <a class="btn btn-primary" href="signup.php" role="button">Sign up &raquo;</a>
         
-        <label>Password: 
-            <input id="pass" type="password" name="pass">
-            <p id="passError"></p>
-        </label>
-        
-        <label>First Name: 
-            <input id="firstName" type="text" name="firstName">
-            <p id="firstNameError"></p>
-        </label>
-        
-        <label>Last Name: 
-            <input id="lastName" type="text" name="lastName">
-            <p id="lastNameError"></p>
-        </label>
-        
-        <label>Blog URL: 
-            <input id="blog" type="text" name="blog">
-            <p id="blogError"></p>
-        </label>
-        
-        <input type="submit" value="Sign Up" name="submit">
-        <p id="error" style="color:red;"> <?php echo $error; ?> </p>
-    </form>
-
-
-    <script>
-        
-    </script>
-</body>
-</html>
+                <a class="btn btn-primary" href="project_upload.php" role="button">Upload &raquo;</a>
+            </form>
+        </div>
+    </nav>
+     
+    <div class="container" style="margin-top:20px;">
+            <form class="form-horizontal" role="form" action="signup.php" method="post">
+                
+                <div class="form-group">
+                    <label class="col-sm-offset-2 control-label col-sm-2" for="email">Email address:</label>
+                    <div class="col-sm-4">
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-offset-2 control-label col-sm-2" for="pwd">Password:</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" name="pass">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-offset-2 control-label col-sm-2" for="fname">First Name:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="firstName">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-offset-2 control-label col-sm-2" for="lname">Last Name:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="lastName">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-offset-2 control-label col-sm-2" for="blog">Blog URL:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="blog">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-10">
+                        <button type="submit" class="btn btn-default">Sign Up</button>
+                    </div>
+                </div>
+                
+                <p class="col-sm-offset-4" id="error" style="color:red;"> <?php echo $error; ?>
+                  
+            </form>
+     
+<?php require ('footer.php'); ?>
